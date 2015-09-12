@@ -1,4 +1,4 @@
-﻿kendoHelpers = {
+﻿\kendoHelpers = {
 	///<summary>Pack of helper methods to make your life easier when working with Kendo UI® framework.</summary>
 	///<author>Salar Khalilzadeh</author>
 	///<source>https://github.com/salarcode/kendoHelpers</source>
@@ -28,6 +28,16 @@
 		},
 	},
 	grid: {
+		getDataItemById: function (kendoGrid, id) {
+			///<summary>Returns the dataItem found by Id</summary>
+			///<returns>DataItem if found, otherwise null</returns>
+			try {
+				return kendoGrid.dataSource.get(id);
+			} catch (e) {
+				console.warn("getDataItemById is failed, id=" + id + " for ", kendoGrid, e);
+			}
+			return null;
+		},
 		getColumnDefinition: function (kendoGrid, fieldName) {
 			///<summary>Gets the grid column definition</summary>
 			///<returns>Kendo Column definition if found, otherwise null</returns>
@@ -40,16 +50,6 @@
 				}
 			} catch (e) {
 				console.warn("getColumnDefinition is failed, fieldName=" + fieldName, kendoGrid, e);
-			}
-			return null;
-		},
-		getDataItemById: function (kendoGrid, id) {
-			///<summary>Returns the dataItem found by Id</summary>
-			///<returns>DataItem if found, otherwise null</returns>
-			try {
-				return kendoGrid.dataSource.get(id);
-			} catch (e) {
-				console.warn("getDataItemById is failed, id=" + id + " for ", kendoGrid, e);
 			}
 			return null;
 		},
