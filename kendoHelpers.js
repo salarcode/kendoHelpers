@@ -3,11 +3,34 @@
 	///<author>Salar Khalilzadeh</author>
 	///<source>https://github.com/salarcode/kendoHelpers</source>
 	datasource: {
-
+		findDataItemByUid: function (data, uid) {
+			///<summary>Finds the dataItem by Uid</summary>
+			if (data == null || data.length == 0)
+				return -1;
+			for (var i = 0; i < data.length; i++) {
+				var dataItem = data[i];
+				if (dataItem.uid == uid) {
+					return dataItem;
+				}
+			}
+			return -1;
+		},
+		findDataIndexByUid: function (data, uid) {
+			///<summary>Finds the index of Uid</summary>
+			if (data == null || data.length == 0)
+				return -1;
+			for (var i = 0; i < data.length; i++) {
+				if (data[i].uid == uid) {
+					return i;
+				}
+			}
+			return -1;
+		},
 	},
 	grid: {
 		getColumnDefinition: function (kendoGrid, fieldName) {
 			///<summary>Gets the grid column definition</summary>
+			///<returns>Kendo Column definition if found, otherwise null</returns>
 			try {
 				var cols = kendoGrid.columns;
 				for (var i = 0; i < cols.length; i++) {
@@ -22,6 +45,7 @@
 		},
 		getDataItemById: function (kendoGrid, id) {
 			///<summary>Returns the dataItem found by Id</summary>
+			///<returns>DataItem if found, otherwise null</returns>
 			try {
 				return kendoGrid.dataSource.get(id);
 			} catch (e) {
@@ -31,6 +55,7 @@
 		},
 		getSelectedDataItem: function (kendoGrid) {
 			///<summary>Returns DataItem of the selected row. Selectable config is required</summary>
+			///<returns>DataItem if found, otherwise null</returns>
 			try {
 				var selected = kendoGrid.select();
 				return kendoGrid.dataItem(selected);
@@ -41,6 +66,7 @@
 		},
 		getSelectedDataItemsList: function (kendoGrid) {
 			///<summary>Returns the list of DataItems from the selected rows. Selectable config is required</summary>
+			///<returns>DataItem Array if found, otherwise null</returns>
 			try {
 				var selected = kendoGrid.select();
 				if (selected.length == 0) {
@@ -61,6 +87,7 @@
 		},
 		getSelectedDataItemByCurrentCell: function (kendoGrid) {
 			///<summary>Returns DataItem of the current active cell. Selectable config is not required.</summary>
+			///<returns>DataItem if found, otherwise null</returns>
 			try {
 				var cell = kendoGrid.current();
 				if (cell == null || cell.length == 0)
@@ -76,11 +103,244 @@
 			}
 			return null;
 		},
+		selectNextCell: function (kendoGrid, cell, editCell, editRow) {
+			///<summary>Selects the next cell of the current cell</summary>
+			///<param name="cell">Optional. The current cell</param>
+			///<returns>N/A</returns>
+			try {
+				if (cell == null || cell.length == 0)
+					cell = kendoGrid.current();
+				if (cell == null || cell.length == 0)
+					return;
 
+				var colIndex = kendoGrid.cellIndex(cell);
+				var cellRow = cell.parent("tr");
+				var rowUid = cellRow.data("uid");
+
+				var element = kendoGrid.element.find("tr[data-uid=\"" + rowUid + "\"] td:eq(" + (colIndex + 1) + ")");
+				kendoGrid.current(element);
+
+				if (editCell)
+					kendoGrid.editCell(element);
+				if (editRow)
+					kendoGrid.editRow(cellRow);
+			} catch (e) {
+				console.warn("selectNextCell is failed, ", kendoGrid, e);
+			}
+		},
+		selectCell: function (kendoGrid, cell, editCell, editRow) {
+			///<summary>Selects and activates the current/specified cell of the grid</summary>
+			///<param name="cell">Optional. The current cell</param>
+			///<returns>N/A</returns>
+			try {
+				if (cell == null || cell.length == 0)
+					cell = kendoGrid.current();
+				if (cell == null || cell.length == 0)
+					return;
+
+				var colIndex = kendoGrid.cellIndex(cell);
+				var cellRow = cell.parent("tr");
+				var rowUid = cellRow.data("uid");
+
+				var element = kendoGrid.element.find("tr[data-uid=\"" + rowUid + "\"] td:eq(" + (colIndex) + ")");
+				kendoGrid.current(element);
+
+				if (editCell)
+					kendoGrid.editCell(element);
+				if (editRow)
+					kendoGrid.editRow(cellRow);
+			} catch (e) {
+				console.warn("selectCell is failed, ", kendoGrid, e);
+			}
+		},
+		selectCellByIndex: function (kendoGrid, colIndex, cell, editCell, editRow) {
+			///<summary>Selects the next cell of the grid</summary>
+			///<param name="cell">Optional. The current cell</param>
+			///<returns>N/A</returns>
+			try {
+				if (cell == null || cell.length == 0)
+					cell = kendoGrid.current();
+				if (cell == null || cell.length == 0)
+					return;
+
+				var cellRow = cell.parent("tr");
+				var rowUid = cellRow.data("uid");
+
+				var element = kendoGrid.element.find("tr[data-uid=\"" + rowUid + "\"] td:eq(" + (colIndex) + ")");
+				kendoGrid.current(element);
+
+				if (editCell)
+					kendoGrid.editCell(element);
+				if (editRow)
+					kendoGrid.editRow(cellRow);
+			} catch (e) {
+				console.warn("kendoGridSelectCellByIndex is failed, ", kendoGrid, e);
+			}
+		},
+		//selectCellByDataItem: function (kendoGrid, dataItem, editCell) {
+		//	///<summary>انتخاب یک سطر با استفاده از دیتا</summary>
+		//	if (dataItem == null)
+		//		return;
+		//	var found = false;
+		//	var colIndex = 1;
+
+		//	kendoGrid.items().each(function () {
+		//		if (found) return;
+		//		var data = kendoGrid.dataItem(this);
+
+		//		if (data.uid == dataItem.uid) {
+
+		//			var element = kendoGrid.element.find("tr[data-uid=\"" + data.uid + "\"] td:eq(" + (colIndex) + ")");
+		//			kendoGrid.current(element);
+
+		//			if (editCell)
+		//				kendoGrid.editCell(element);
+
+		//			found = true;
+		//			return;
+		//		}
+		//	});
+		//},
+		refreshAndKeepEditing: function (kendoGrid, editTheCurrent) {
+			///<summary>Refreshes the grid, keeps the cell in editing mode if there is any</summary>
+			///<param name="editTheCurrent">edit the current active instead of the cell in the edit mode</param>
+			///<returns>N/A</returns>
+			try {
+
+				var currentCell = kendoGrid.element.find("td[id$='_active_cell']");
+				var currentRow = currentCell.parent('tr').attr("data-uid");
+				var currentCellIndex = currentCell.index();
+
+				var editedRowUid = kendoGrid.element.find("tr.k-grid-edit-row").attr("data-uid");
+				var cellIndex = kendoGrid.element.find("td.k-edit-cell").index();
+
+				kendoGrid.refresh();
+
+				// the timeout is to let the process continue other kendo events
+				setTimeout(function () {
+
+					// should focus on the current instead of the item being edited
+					if (editTheCurrent) {
+						// is in edit mode?
+						if (cellIndex >= 0) {
+							kendoGrid.editCell(kendoGrid.element.find("tr[data-uid='" + currentRow + "'] td:eq(" + currentCellIndex + ")"));
+						}
+						else {
+							kendoGrid.current(kendoGrid.element.find("tr[data-uid='" + currentRow + "'] td:eq(" + currentCellIndex + ")"));
+						}
+					} else {
+
+						if (cellIndex >= 0 && editedRowUid) {
+							kendoGrid.editCell(kendoGrid.element.find("tr[data-uid='" + editedRowUid + "'] td:eq(" + cellIndex + ")"));
+						} else if (editedRowUid) {
+							kendoGrid.editRow(kendoGrid.element.find("tr[data-uid='" + editedRowUid + "']"));
+						} else {
+							kendoGrid.current(kendoGrid.element.find("tr[data-uid='" + currentRow + "'] td:eq(" + currentCellIndex + ")"));
+						}
+					}
+				}, 50);
+
+			} catch (e) {
+				console.warn("refreshAndKeepEditing is failed, ", kendoGrid, e);
+			}
+		},
+		selectRowByUid: function (kendoGrid, rowUid) {
+			///<summary>Activates and selects the specified row by Uid</summary>
+			///<returns>N/A</returns>
+			try {
+
+				var row = kendoGrid.element.find("tr[data-uid=\"" + rowUid + "\"]");
+				kendoGrid.current(row);
+
+				try {
+					kendoGrid.select(row);
+				} catch (e) {
+					// catch the error if the grid is not selectable
+				}
+			} catch (e) {
+				console.warn("selectRowByUid is failed, ", kendoGrid, rowUid, " > error> ", e);
+			}
+		},
+		selectRowByIndex: function (kendoGrid, rowNumber, editRow, colIndex, editCell) {
+			///<summary>Activates and selects the row by row number. Also selects the cell if requested</summary>
+			///<returns>N/A</returns>
+			try {
+				if (!colIndex)
+					colIndex = 0;
+				if (!rowNumber)
+					rowNumber = 1;
+
+				var row = kendoGrid.element.find("tr:eq(" + rowNumber + ")");
+				var cell = row.find("td:eq(" + colIndex + ")");
+				kendoGrid.current(cell);
+
+				try {
+					kendoGrid.select(row);
+				} catch (e) {
+					// catch the error if the grid is not selectable
+				}
+
+				if (editCell)
+					kendoGrid.editCell(cell);
+				if (editRow)
+					kendoGrid.editRow(row);
+			} catch (e) {
+				console.warn("selectRowByIndex is failed, ", kendoGrid, e);
+			}
+		},
+		selectByCondition: function (kendoGrid, conditionFunc) {
+			///<summary>Selects a row if provided function applies</summary>
+			///<returns>N/A</returns>
+			if (conditionFunc == null)
+				return;
+			var found = false;
+			kendoGrid.items().each(function () {
+				if (found) return;
+				var data = kendoGrid.dataItem(this);
+
+
+				if (conditionFunc(data)) {
+					try {
+						kendoGrid.select(this);
+					} catch (e) {
+						console.warn("selectByCondition is failed, maybe the grid is not selectable. ", kendoGrid, e);
+					}
+					found = true;
+					return;
+				}
+			});
+		},
+		selectCellByCondition: function (kendoGrid, conditionFunc, editCell) {
+			///<summary>Activates a cell by provided function</summary>
+			///<returns>N/A</returns>
+			if (conditionFunc == null)
+				return;
+			var found = false;
+			var colIndex = 1;
+
+			kendoGrid.items().each(function () {
+				if (found) return;
+				var data = kendoGrid.dataItem(this);
+
+
+				if (conditionFunc(data)) {
+
+					var element = kendoGrid.element.find("tr[data-uid=\"" + data.uid + "\"] td:eq(" + (colIndex) + ")");
+					kendoGrid.current(element);
+
+					if (editCell)
+						kendoGrid.editCell(element);
+
+					found = true;
+					return;
+				}
+			});
+		},
 	},
 	tabstrip: {
 		displayLoading: function (tabstrip) {
 			///<summary>Displays loading process on the tabStrip</summary>
+			///<returns>N/A</returns>
 			if (tabstrip == null)
 				return;
 
@@ -104,12 +364,13 @@
 	treeview: {
 		applyRightClickSelection: function (treeview, onRightClick) {
 			///<summary>Makes treeview select the item on the right click</summary>
-			var treeviewElement = treeview.element;
-			if (treeviewElement == null) {
+			///<returns>N/A</returns>
+			var element = treeview.element;
+			if (element == null) {
 				console.error("applyRightClickSelection failed because of null treeview.element", treeview);
 				return;
 			}
-			treeviewElement.on("mousedown", ".k-item", function (event) {
+			element.on("mousedown", ".k-item", function (event) {
 				if (event.which === 3) {
 					event.stopPropagation(); // to avoid propagation of this event to the root of the treeview
 
@@ -121,23 +382,92 @@
 				}
 			});
 		},
-		treeViewCheckTheSubItems: function (node, check, checkSubItems) {
+		checkSubItems: function (node, check, checkSubItems) {
 			///<summary>Checks the sub items of a node</summary>
+			///<returns>N/A</returns>
 			var nodeChildren = node.children.view();
 			for (var i = 0; i < nodeChildren.length; i++) {
 				var n = nodeChildren[i];
 				n.checked = check;
+
+				// make the tree update itself
 				n.trigger("change", { field: "checked" });
 
 				if (checkSubItems && n.hasChildren) {
-					kendoHelpers.treeview.treeViewCheckTheSubItems(n, check, checkSubItems);
+					kendoHelpers.treeview.checkSubItems(n, check, checkSubItems);
 				}
 			}
+		},
+		getCheckedItems: function (treeview, uncheck) {
+			///<summary>Returns the checked items if there is any</summary>
+			///<returns>DataItem Array if found, otherwise empty array</returns>
+			// Source: http://blogs.telerik.com/kendoui/posts/13-10-17/how-to-get-the-checked-items-from-a-treeview-with-checkboxes
+
+			var nodes = treeview.dataSource.view();
+
+			function getCheckedNodes(nodes) {
+				var node, childCheckedNodes;
+				var checkedNodes = [];
+
+				for (var i = 0; i < nodes.length; i++) {
+					node = nodes[i];
+					if (node.checked) {
+						checkedNodes.push(node);
+						if (uncheck) {
+							node.checked = false;
+						}
+					}
+
+					// to understand recursion, first
+					// you must understand recursion
+					if (node.hasChildren) {
+						childCheckedNodes = getCheckedNodes(node.children.view());
+						if (childCheckedNodes.length > 0) {
+							checkedNodes = checkedNodes.concat(childCheckedNodes);
+						}
+					}
+				}
+				return checkedNodes;
+			}
+
+			return getCheckedNodes(nodes);
+		},
+		eventRowDoubleClick: function (kendoGrid, onDoubleClick) {
+			///<summary>Double click event on rows for grid</summary>
+			var element = kendoGrid.element;
+			if (element == null) {
+				console.error("eventRowDoubleClick is failed because of null kendoGrid.element", kendoGrid);
+				return;
+			}
+
+			element.on("dblclick", " tbody > tr", function () {
+				if (onDoubleClick) {
+					var dataItem = kendoGrid.dataItem($(this));
+					onDoubleClick(dataItem);
+				}
+			});
+		},
+		eventCellDoubleClick: function (kendoGrid, onDoubleClick) {
+			///<summary>Double click event on cells for grid</summary>
+			var element = kendoGrid.element;
+			if (element == null) {
+				console.error("eventCellDoubleClick failed because of null kendoGrid.element", kendoGrid);
+				return;
+			}
+
+			element.on("dblclick", " tbody > tr > td", function () {
+				if (onDoubleClick) {
+					var dataItem = kendoGrid.dataItem($(this));
+					debugger;
+					onDoubleClick(dataItem);
+				}
+			});
 		},
 	},
 	upload: {
 		hasAnyFileSelected: function (kendoUpload) {
 			///<summary>Check if any file is selected</summary>
+			///<returns type="Boolean">Boolean</returns>
 			if (!kendoUpload.wrapper) {
 				return false;
 			}
@@ -146,6 +476,7 @@
 
 		getUploadElements: function (kendoUpload) {
 			///<summary>Retrieving the upload elements from the upload control</summary>
+			///<returns>Array of elements if found, otherwise null</returns>
 			if (!kendoUpload.wrapper) {
 				return null;
 			}
@@ -153,11 +484,28 @@
 		},
 	},
 	dropdown: {
+		//makeItemsAutoWith: function (kendoDropDown) {
+		//	///<summary>Makes drop-down items auto width</summary>
+		//	var name = "#" + kendoDropDown.element.attr('id') + "-list";
+		//	$(name).addClass('k-dropdown-items-auto-width');
+		//	//.k-dropdown-items-auto-width.k-list-container {
+		//	//	-moz-min-width: 130px !important;
+		//	//	-ms-min-width: 130px !important;
+		//	//	-o-min-width: 130px !important;
+		//	//	-webkit-min-width: 130px !important;
+		//	//	min-width: 130px !important;
+		//	//	width: auto !important;
+		//	//}
 
+		//	//.k-dropdown-items-auto-width.k-list-container .k-list {
+		//	//	width: auto !important;
+		//	//}
+		//},
 	},
 	validator: {
 		isValid: function (form) {
-			///<summary></summary>
+			///<summary>Triggers kendo validation for form and returns the status of form</summary>
+			///<returns type="Boolean">Boolean</returns>
 			try {
 				form = $(form);
 				if (form == null || form.length == 0)
@@ -173,7 +521,8 @@
 			}
 		},
 		hideMessages: function (form) {
-			///<summary></summary>
+			///<summary>Enables kendo validation for form then hides any visible message</summary>
+			///<returns>N/A</returns>
 			try {
 				form = $(form);
 				if (form == null || form.length == 0)
@@ -188,6 +537,7 @@
 	},
 	getDataItemById: function (kendoWidget, id) {
 		///<summary>Returns the dataItem found by Id</summary>
+		///<returns>DataItem if found, otherwise null</returns>
 		try {
 			return kendoWidget.dataSource.get(id);
 		} catch (e) {
