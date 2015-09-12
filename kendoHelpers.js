@@ -1,4 +1,4 @@
-﻿\kendoHelpers = {
+﻿kendoHelpers = {
 	///<summary>Pack of helper methods to make your life easier when working with Kendo UI® framework.</summary>
 	///<author>Salar Khalilzadeh</author>
 	///<source>https://github.com/salarcode/kendoHelpers</source>

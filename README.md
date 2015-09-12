@@ -32,22 +32,21 @@ Available at `kendoHelpers.grid.*`
 
 * **`getDataItemById (kendoGrid, id)`**
 
-Returns the dataItem found by Id.
+    Returns the dataItem found by Id.
 
-The result is DataItem if found, otherwise null.
-
+    The result is DataItem if found, otherwise null.
 
 * **`getColumnDefinition (kendoGrid, fieldName)`**
 
-Gets the grid column definition.
+    Gets the grid column definition.
 
-The result is Kendo column definition if found, otherwise null.
+    The result is Kendo column definition if found, otherwise null.
 
 
 * **`getSelectedDataItem (kendoGrid)`**
 
-Returns DataItem of the selected row. Selectable config is required.
+    Returns DataItem of the selected row. Selectable config is required.
 
-The result is DataItem if found, otherwise null.
+    The result is DataItem if found, otherwise null.
 
 
