@@ -336,6 +336,37 @@
 				}
 			});
 		},
+		eventRowDoubleClick: function (kendoGrid, onDoubleClick) {
+			///<summary>Double click event on rows for grid</summary>
+			var element = kendoGrid.element;
+			if (element == null) {
+				console.error("eventRowDoubleClick is failed because of null kendoGrid.element", kendoGrid);
+				return;
+			}
+
+			element.on("dblclick", " tbody > tr", function () {
+				if (onDoubleClick) {
+					var dataItem = kendoGrid.dataItem($(this));
+					onDoubleClick(dataItem);
+				}
+			});
+		},
+		eventCellDoubleClick: function (kendoGrid, onDoubleClick) {
+			///<summary>Double click event on cells for grid</summary>
+			var element = kendoGrid.element;
+			if (element == null) {
+				console.error("eventCellDoubleClick failed because of null kendoGrid.element", kendoGrid);
+				return;
+			}
+
+			element.on("dblclick", " tbody > tr > td", function () {
+				if (onDoubleClick) {
+					var dataItem = kendoGrid.dataItem($(this));
+					debugger;
+					onDoubleClick(dataItem);
+				}
+			});
+		},
 	},
 	tabstrip: {
 		displayLoading: function (tabstrip) {
@@ -383,7 +414,7 @@
 			});
 		},
 		checkSubItems: function (node, check, checkSubItems) {
-			///<summary>Checks the sub items of a node</summary>
+			///<summary>Checks the node and its sub items</summary>
 			///<returns>N/A</returns>
 			var nodeChildren = node.children.view();
 			for (var i = 0; i < nodeChildren.length; i++) {
@@ -401,6 +432,7 @@
 		getCheckedItems: function (treeview, uncheck) {
 			///<summary>Returns the checked items if there is any</summary>
 			///<returns>DataItem Array if found, otherwise empty array</returns>
+			///<param name="uncheck">Should uncheck the nodes</param>
 			// Source: http://blogs.telerik.com/kendoui/posts/13-10-17/how-to-get-the-checked-items-from-a-treeview-with-checkboxes
 
 			var nodes = treeview.dataSource.view();
@@ -431,37 +463,6 @@
 			}
 
 			return getCheckedNodes(nodes);
-		},
-		eventRowDoubleClick: function (kendoGrid, onDoubleClick) {
-			///<summary>Double click event on rows for grid</summary>
-			var element = kendoGrid.element;
-			if (element == null) {
-				console.error("eventRowDoubleClick is failed because of null kendoGrid.element", kendoGrid);
-				return;
-			}
-
-			element.on("dblclick", " tbody > tr", function () {
-				if (onDoubleClick) {
-					var dataItem = kendoGrid.dataItem($(this));
-					onDoubleClick(dataItem);
-				}
-			});
-		},
-		eventCellDoubleClick: function (kendoGrid, onDoubleClick) {
-			///<summary>Double click event on cells for grid</summary>
-			var element = kendoGrid.element;
-			if (element == null) {
-				console.error("eventCellDoubleClick failed because of null kendoGrid.element", kendoGrid);
-				return;
-			}
-
-			element.on("dblclick", " tbody > tr > td", function () {
-				if (onDoubleClick) {
-					var dataItem = kendoGrid.dataItem($(this));
-					debugger;
-					onDoubleClick(dataItem);
-				}
-			});
 		},
 	},
 	upload: {
