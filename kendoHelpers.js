@@ -1,11 +1,11 @@
-﻿kendoHelpers={
+﻿kendoHelpers = {
 	///<summary>Pack of helper methods to make your life easier when working with Kendo UI® framework.</summary>
 	///<author>Salar Khalilzadeh</author>
 	///<source>https://github.com/salarcode/kendoHelpers</source>
-	datasource:{
-		
+	datasource: {
+
 	},
-	grid:{
+	grid: {
 		getColumnDefinition: function (kendoGrid, fieldName) {
 			///<summary>Gets the grid column definition</summary>
 			try {
@@ -16,7 +16,7 @@
 						return col;
 				}
 			} catch (e) {
-				console.warn("getColumnDefinition failed, fieldName=" + fieldName, kendoGrid, e);
+				console.warn("getColumnDefinition is failed, fieldName=" + fieldName, kendoGrid, e);
 			}
 			return null;
 		},
@@ -25,21 +25,21 @@
 			try {
 				return kendoGrid.dataSource.get(id);
 			} catch (e) {
-				console.warn("getDataItemById failed, id=" + id + " for ", kendoGrid, e);
+				console.warn("getDataItemById is failed, id=" + id + " for ", kendoGrid, e);
 			}
 			return null;
 		},
-		getSelectedItem: function (kendoGrid) {
+		getSelectedDataItem: function (kendoGrid) {
 			///<summary>Returns DataItem of the selected row. Selectable config is required</summary>
 			try {
 				var selected = kendoGrid.select();
 				return kendoGrid.dataItem(selected);
 			} catch (e) {
-				console.warn("getSelectedItem has for ", kendoGrid, e);
+				console.warn("getSelectedDataItem is failed, ", kendoGrid, e);
 			}
 			return null;
 		},
-		getSelectedItemsList: function (kendoGrid) {
+		getSelectedDataItemsList: function (kendoGrid) {
 			///<summary>Returns the list of DataItems from the selected rows. Selectable config is required</summary>
 			try {
 				var selected = kendoGrid.select();
@@ -55,7 +55,7 @@
 					return dataItems;
 				}
 			} catch (e) {
-				console.warn("getSelectedItemsList has for ", kendoGrid, e);
+				console.warn("getSelectedDataItemsList is failed, ", kendoGrid, e);
 			}
 			return null;
 		},
@@ -72,13 +72,13 @@
 				// retrieving from the row
 				return kendoGrid.dataItem(row);
 			} catch (e) {
-				console.warn("getSelectedDataItemByCurrentCell failed for ", kendoGrid, e);
+				console.warn("getSelectedDataItemByCurrentCell is failed, ", kendoGrid, e);
 			}
 			return null;
 		},
 
 	},
-	tabstrip:{
+	tabstrip: {
 		displayLoading: function (tabstrip) {
 			///<summary>Displays loading process on the tabStrip</summary>
 			if (tabstrip == null)
@@ -101,7 +101,7 @@
 			tabstrip.bind("contentLoad", hideLoading);
 		},
 	},
-	treeview:{
+	treeview: {
 		applyRightClickSelection: function (treeview, onRightClick) {
 			///<summary>Makes treeview select the item on the right click</summary>
 			var treeviewElement = treeview.element;
@@ -109,7 +109,7 @@
 				console.error("applyRightClickSelection failed because of null treeview.element", treeview);
 				return;
 			}
-			treeviewElement.on('mousedown', '.k-item', function (event) {
+			treeviewElement.on("mousedown", ".k-item", function (event) {
 				if (event.which === 3) {
 					event.stopPropagation(); // to avoid propagation of this event to the root of the treeview
 
@@ -135,7 +135,7 @@
 			}
 		},
 	},
-	upload:{
+	upload: {
 		hasAnyFileSelected: function (kendoUpload) {
 			///<summary>Check if any file is selected</summary>
 			if (!kendoUpload.wrapper) {
@@ -149,13 +149,13 @@
 			if (!kendoUpload.wrapper) {
 				return null;
 			}
-			return kendoUpload.wrapper.find('[data-role=upload]');
+			return kendoUpload.wrapper.find("[data-role=upload]");
 		},
 	},
-	dropdown:{
-		
+	dropdown: {
+
 	},
-	validator:{
+	validator: {
 		isValid: function (form) {
 			///<summary></summary>
 			try {
@@ -182,7 +182,7 @@
 				var validator = form.kendoValidator().data("kendoValidator");
 				validator.hideMessages();
 			} catch (e) {
-				console.warn("hideMessages has failed>", form, e);
+				console.warn("hideMessages is failed, ", form, e);
 			}
 		},
 	},
@@ -191,7 +191,7 @@
 		try {
 			return kendoWidget.dataSource.get(id);
 		} catch (e) {
-			console.warn("getDataItemById failed, id=" + id + " for ", kendoWidget, e);
+			console.warn("getDataItemById is failed, id=" + id + " for ", kendoWidget, e);
 		}
 		return null;
 	},
