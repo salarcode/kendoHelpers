@@ -30,95 +30,95 @@ Here is the list of all available helpers.
 ####Grid
 Available at `kendoHelpers.grid.*`
 
-* <font color="navy">**`getDataItemById (kendoGrid, id)`**</font>
+* **`getDataItemById (kendoGrid, id)`**
 
     Returns the dataItem found by Id.
 
     The result is DataItem if found, otherwise null.
 
-* <font color="navy">**`getColumnDefinition (kendoGrid, fieldName)`**</font>
+* **`getColumnDefinition (kendoGrid, fieldName)`**
 
     Gets the grid column definition.
 
     The result is Kendo column definition if found, otherwise null.
 
-* <font color="navy">**`getSelectedDataItem (kendoGrid)`**</font>
+* **`getSelectedDataItem (kendoGrid)`**
 
     Returns DataItem of the selected row. Selectable config is required.
 
     The result is DataItem if found, otherwise null.
 
-* <font color="navy">**`getSelectedDataItemsList (kendoGrid)`**</font>
+* **`getSelectedDataItemsList (kendoGrid)`**
 
     Returns the list of DataItems from the selected rows. Selectable config is required.
 
     The result is DataItem Array if found, otherwise null.
 
-* <font color="navy">**`getSelectedDataItemByCurrentCell (kendoGrid)`**</font>
+* **`getSelectedDataItemByCurrentCell (kendoGrid)`**
 
     Returns DataItem of the current active cell. Selectable config is not required.
 
     The result is DataItem if found, otherwise null
 
-* <font color="navy">**`selectNextCell (kendoGrid, cell, editCell, editRow)`**</font>
+* **`selectNextCell (kendoGrid, cell, editCell, editRow)`**
 
     Selects the next cell of the current cell
 
-* <font color="navy">**`selectCell (kendoGrid, cell, editCell, editRow)`**</font>
+* **`selectCell (kendoGrid, cell, editCell, editRow)`**
 
     Selects and activates the current/specified cell of the grid.
 
-* <font color="navy">**`selectCellByIndex (kendoGrid, colIndex, cell, editCell, editRow)`**</font>
+* **`selectCellByIndex (kendoGrid, colIndex, cell, editCell, editRow)`**
 
     Selects the next cell of the grid
 
-* <font color="navy">**`refreshAndKeepEditing (kendoGrid, editTheCurrent)`**</font>
+* **`refreshAndKeepEditing (kendoGrid, editTheCurrent)`**
 
     Refreshes the grid, keeps the cell in editing mode if there is any.
 
-* <font color="navy">**`selectRowByUid (kendoGrid, rowUid)`**</font>
+* **`selectRowByUid (kendoGrid, rowUid)`**
 
     Activates and selects the specified row by Uid.
 
-* <font color="navy">**`selectRowByIndex (kendoGrid, rowNumber, editRow, colIndex, editCell)`**</font>
+* **`selectRowByIndex (kendoGrid, rowNumber, editRow, colIndex, editCell)`**
 
     Activates and selects the row by row number. Also selects the cell if requested
 
-* <font color="navy">**`selectByCondition (kendoGrid, conditionFunc)`**</font>
+* **`selectByCondition (kendoGrid, conditionFunc)`**
 
     Selects a row if provided function applies
 
-* <font color="navy">**`selectCellByCondition (kendoGrid, conditionFunc, editCell)`**</font>
+* **`selectCellByCondition (kendoGrid, conditionFunc, editCell)`**
 
     Activates a cell by provided function.
 
-* <font color="navy">**`eventRowDoubleClick (kendoGrid, onDoubleClick)`**</font>
+* **`eventRowDoubleClick (kendoGrid, onDoubleClick)`**
 
     Double click event on rows for grid.
 
-* <font color="navy">**`eventCellDoubleClick (kendoGrid, onDoubleClick)`**</font>
+* **`eventCellDoubleClick (kendoGrid, onDoubleClick)`**
 
     Double click event on cells for grid.
 
 ####TabStrip
 Available at `kendoHelpers.tabstrip.*`
 
-* <font color="navy">**`displayLoading (tabstrip)`**</font>
+* **`displayLoading (tabstrip)`**
 
     Displays loading process on the tabStrip.
 
 ####TreeView
 Available at `kendoHelpers.treeview.*`
 
-* <font color="navy">**`applyRightClickSelection (treeview, onRightClick)`**</font>
+* **`applyRightClickSelection (treeview, onRightClick)`**
 
     Makes treeview select the item on the right click
 
-* <font color="navy">**`checkSubItems (node, check, checkSubItems)`**</font>
+* **`checkSubItems (node, check, checkSubItems)`**
 
     Checks the node and its sub items
 
-* <font color="navy">**`getCheckedItems (treeview, uncheck)`**</font>
+* **`getCheckedItems (treeview, uncheck)`**
 
     Returns the checked items if there is any.
 
@@ -127,13 +127,13 @@ Available at `kendoHelpers.treeview.*`
 ####Upload
 Available at `kendoHelpers.upload.*`
 
-* <font color="navy">**`hasAnyFileSelected (kendoUpload)`**</font>
+* **`hasAnyFileSelected (kendoUpload)`**
 
     Check if any file is selected.
 
     The result is boolean.
 
-* <font color="navy">**`getUploadElements (kendoUpload)`**</font>
+* **`getUploadElements (kendoUpload)`**
 
     Retrieving the upload elements from the upload control.
 
@@ -142,13 +142,13 @@ Available at `kendoHelpers.upload.*`
 ####Validator
 Available at `kendoHelpers.validator.*`
 
-* <font color="navy">**`isValid (form)`**</font>
+* **`isValid (form)`**
 
     Triggers kendo validation for form and returns the status of form.
 
     The result is boolean.
 
-* <font color="navy">**`hideMessages (form)`**</font>
+* **`hideMessages (form)`**
 
     Enables kendo validation for form then hides any visible message.
 
@@ -157,11 +157,11 @@ Available at `kendoHelpers.validator.*`
 ####DataSource
 Available at `kendoHelpers.datasource.*`
 
-* <font color="navy">**`findDataItemByUid (data, uid)`**</font>
+* **`findDataItemByUid (data, uid)`**
 
     Finds the dataItem by Uid.
 
-* <font color="navy">**`findDataIndexByUid (data, uid)`**</font>
+* **`findDataIndexByUid (data, uid)`**
 
     Finds the index of Uid.
 
