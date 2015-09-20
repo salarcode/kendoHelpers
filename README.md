@@ -107,6 +107,13 @@ Available at `kendoHelpers.tabstrip.*`
 
     Displays loading process on the tabStrip.
 
+####TreeList
+Available at `kendoHelpers.treelist.*`
+
+* **`actionForSubItems (treeList, dataItem, action, onlyFirstLevel)`**
+
+    Executes a callback for each sub item.
+
 ####TreeView
 Available at `kendoHelpers.treeview.*`
 

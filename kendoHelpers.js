@@ -178,7 +178,7 @@
 			}
 		},
 		//selectCellByDataItem: function (kendoGrid, dataItem, editCell) {
-		//	///<summary>انتخاب یک سطر با استفاده از دیتا</summary>
+		//	///<summary>Selects a cell by its dataItem</summary>
 		//	if (dataItem == null)
 		//		return;
 		//	var found = false;
@@ -390,6 +390,28 @@
 			tabstrip.bind("select", showLoading);
 			tabstrip.bind("activate", hideLoading);
 			tabstrip.bind("contentLoad", hideLoading);
+		},
+	},
+	treelist: {
+		actionForSubItems: function (treeList, dataItem, action, onlyFirstLevel) {
+			///<summary>Executes a callback for each sub item</summary>
+			///<param name="onlyFirstLevel">If true, only the direct children of the item will be applied</param>
+			///<returns>N/A</returns>
+			if (dataItem == null || action == null)
+				return;
+
+			var children = treeList.dataSource.childNodes(dataItem);
+			for (var i = 0; i < children.length; i++) {
+				var child = children[i];
+
+				action(child);
+
+				if (!onlyFirstLevel)
+					kendoHelpers.treelist.actionForSubItems(treeList, child, action, onlyFirstLevel);
+			}
+
+			//// the dev should update the tree to replicate the changes to the UI
+			// treeList.refresh();
 		},
 	},
 	treeview: {
