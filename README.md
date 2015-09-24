@@ -131,6 +131,10 @@ Available at `kendoHelpers.treeview.*`
 
     The result is DataItem Array if found, otherwise empty array.
 
+* **`reloadSelectedNode (treeview, childrenOnly)`**
+
+    Reloads the selected node's parent in order to refresh the node itself.
+
 ####Upload
 Available at `kendoHelpers.upload.*`
 

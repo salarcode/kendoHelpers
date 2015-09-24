@@ -486,6 +486,36 @@
 
 			return getCheckedNodes(nodes);
 		},
+		reloadSelectedNode: function (treeview, childrenOnly) {
+			///<summary>Reloads the selected node's parent in order to refresh the node itself</summary>
+			///<param name="childrenOnly">If true, only the children of the selected node will update</param>
+			try {
+				var item = treeview.select();
+				if (item != null) {
+					var dataItem = treeview.dataItem(item);
+
+					if (childrenOnly && dataItem && dataItem.hasChildren) {
+
+						dataItem.loaded(false);
+						dataItem.load();
+
+					} else {
+						var parent = treeview.parent(item);
+						var parentDataItem = treeview.dataItem(parent);
+
+						if (parentDataItem != null) {
+							parentDataItem.loaded(false);
+							parentDataItem.load();
+						} else {
+							treeview.dataSource.read();
+						}
+					}
+				}
+			} catch (e) {
+				console.warn("treeViewReloadSelectedNode is failed. No node is selected. Realoding the whole tree", treeview);
+				treeview.dataSource.read();
+			}
+		}
 	},
 	upload: {
 		hasAnyFileSelected: function (kendoUpload) {
