@@ -114,6 +114,12 @@ Available at `kendoHelpers.treelist.*`
 
     Executes a callback for each sub item.
 
+* **`getColumnDefinition (treeList, fieldName)`**
+
+    [Alias] Gets the treeList column definition.
+
+    The result is Kendo column definition if found, otherwise null.
+
 ####TreeView
 Available at `kendoHelpers.treeview.*`
 

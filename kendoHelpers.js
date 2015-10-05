@@ -413,6 +413,12 @@
 			//// the dev should update the tree to replicate the changes to the UI
 			// treeList.refresh();
 		},
+		getColumnDefinition: function (treeList, fieldName) {
+			///<summary>[Alias] Gets the treeList column definition</summary>
+			///<returns>Kendo Column definition if found, otherwise null</returns>
+			return kendoHelpers.grid.getColumnDefinition(treeList, fieldName);
+		},
+
 	},
 	treeview: {
 		applyRightClickSelection: function (treeview, onRightClick) {
