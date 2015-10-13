@@ -107,6 +107,13 @@ Available at `kendoHelpers.tabstrip.*`
 
     Displays loading process on the tabStrip.
 
+####ListView
+Available at `kendoHelpers.listview.*`
+
+* **`selectRowByUid (kendoList, rowUid)`**
+
+    Selects the specified row by Uid.
+
 ####TreeList
 Available at `kendoHelpers.treelist.*`
 

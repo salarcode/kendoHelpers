@@ -392,6 +392,19 @@
 			tabstrip.bind("contentLoad", hideLoading);
 		},
 	},
+	listview: {
+		selectRowByUid: function (kendoList, rowUid) {
+			///<summary>Selects the specified row by Uid</summary>
+			///<returns>N/A</returns>
+			try {
+				var element = kendoList.element.find("div[data-uid=\"" + rowUid + "\"]");
+				kendoList.select(element);
+
+			} catch (e) {
+				console.warn("selectRowByUid is failed ", kendoList, rowUid, " > error> ", e);
+			}
+		},
+	},
 	treelist: {
 		actionForSubItems: function (treeList, dataItem, action, onlyFirstLevel) {
 			///<summary>Executes a callback for each sub item</summary>
