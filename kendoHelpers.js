@@ -391,6 +391,19 @@
 			tabstrip.bind("activate", hideLoading);
 			tabstrip.bind("contentLoad", hideLoading);
 		},
+		showHideTab: function (tabstrip, tabIndex, hide) {
+			///<summary>Show/hide the specified tab</summary>
+			///<returns>N/A</returns>
+			try {
+				if (hide) {
+					$(tabstrip.items()[tabIndex]).css("display", "none");
+				} else {
+					$(tabstrip.items()[tabIndex]).css("display", "inline-block");
+				}
+			} catch (e) {
+				console.warn("tabStripShowHide is failed, tabIndex=" + tabIndex, tabstrip, e);
+			}
+		}		
 	},
 	listview: {
 		selectRowByUid: function (kendoList, rowUid) {

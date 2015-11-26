@@ -106,6 +106,10 @@ Available at `kendoHelpers.tabstrip.*`
 * **`displayLoading (tabstrip)`**
 
     Displays loading process on the tabStrip.
+	
+* **`showHideTab (tabstrip, tabIndex, hide)`**
+
+    Show/hide the specified tab.
 
 ####ListView
 Available at `kendoHelpers.listview.*`
