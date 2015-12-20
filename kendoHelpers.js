@@ -41,7 +41,7 @@
 				if (editRow)
 					kendoGrid.editRow(cellRow);
 			} catch (e) {
-				console.warn("kendoGridAddRow failed for ", kendoGrid, e);
+				console.warn("addRow is failed for ", kendoGrid, e);
 			}
 			return newRow;
 		},
@@ -53,7 +53,7 @@
 				kendoGrid.current(cellRow);
 				kendoGrid.editRow(cellRow);
 			} catch (e) {
-				console.warn("kendoGridEditRrow failed for ", kendoGrid, e);
+				console.warn("editRrow is failed for ", kendoGrid, e);
 			}
 		},
 		getDataItemById: function (kendoGrid, id) {
