@@ -28,6 +28,34 @@
 		},
 	},
 	grid: {
+		addRow: function (kendoGrid, editRow) {
+			///<summary>Adds a new row , then switches to edit mode if specified</summary>
+			///<returns>DataItem of the new row if succeeded, otherwise null</returns>
+			var newRow = null;
+			try {
+				newRow = kendoGrid.dataSource.add();
+
+				var cellRow = kendoGrid.element.find("tr[data-uid=\"" + newRow.uid + "\"]");
+				kendoGrid.current(cellRow);
+
+				if (editRow)
+					kendoGrid.editRow(cellRow);
+			} catch (e) {
+				console.warn("kendoGridAddRow failed for ", kendoGrid, e);
+			}
+			return newRow;
+		},
+		editRrow: function (kendoGrid, dataItem) {
+			///<summary>Triggers edit mode for the specified dataItem</summary>
+			///<returns>N/A</returns>
+			try {
+				var cellRow = kendoGrid.element.find("tr[data-uid=\"" + dataItem.uid + "\"]");
+				kendoGrid.current(cellRow);
+				kendoGrid.editRow(cellRow);
+			} catch (e) {
+				console.warn("kendoGridEditRrow failed for ", kendoGrid, e);
+			}
+		},
 		getDataItemById: function (kendoGrid, id) {
 			///<summary>Returns the dataItem found by Id</summary>
 			///<returns>DataItem if found, otherwise null</returns>

@@ -30,6 +30,16 @@ Here is the list of all available helpers.
 ####Grid
 Available at `kendoHelpers.grid.*`
 
+* **`addRow (kendoGrid, editRow)`**
+
+    Adds a new row , then switches to edit mode if specified.
+
+    The result is DataItem of the new row if succeeded, otherwise null.
+
+* **`editRrow (kendoGrid, dataItem)`**
+
+    Triggers edit mode for the specified dataItem.
+
 * **`getDataItemById (kendoGrid, id)`**
 
     Returns the dataItem found by Id.
