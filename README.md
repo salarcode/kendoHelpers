@@ -110,6 +110,14 @@ Available at `kendoHelpers.grid.*`
 
     Double click event on cells for grid.
 
+* **`saveGridAsExcel (kendoGrid, fileName, saveAllPages)`**
+
+    Saves the grid data as an Excel file.
+
+* **`saveGridAsPdf (kendoGrid, fileName, saveAllPages, options, authorName)`**
+
+   Saves the grid data as a Pdf document.
+
 ####TabStrip
 Available at `kendoHelpers.tabstrip.*`
 

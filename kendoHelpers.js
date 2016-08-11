@@ -390,11 +390,46 @@
 			element.on("dblclick", " tbody > tr > td", function () {
 				if (onDoubleClick) {
 					var dataItem = kendoGrid.dataItem($(this));
-					debugger;
 					onDoubleClick(dataItem);
 				}
 			});
 		},
+		saveGridAsExcel: function (kendoGrid, fileName, saveAllPages) {
+			///<summary>Saves the grid data as an Excel file</summary>
+			var excel = kendoGrid.options.excel || {};
+
+			if (fileName && fileName.toLowerCase().indexOf(".xlsx") == -1) {
+				fileName = fileName + ".xlsx";
+				excel.fileName = fileName;
+			}
+			excel.filterable = true;
+			if (saveAllPages != null)
+				excel.allPages = saveAllPages;
+			else
+				excel.allPages = false;
+			kendoGrid.options.excel = excel;
+
+			kendoGrid.saveAsExcel();
+		},
+		saveGridAsPdf: function (kendoGrid, fileName, saveAllPages, options, authorName) {
+			///<summary>Saves the grid data as a Pdf document</summary>
+			var pdf = options || kendoGrid.options.pdf || {};
+
+			if (fileName && fileName.toLowerCase().indexOf(".pdf") == -1) {
+				fileName = fileName + ".pdf";
+				pdf.fileName = fileName;
+			}
+			pdf.filterable = true;
+			if (authorName)
+				pdf.author = pdf.creator = authorName;
+			if (saveAllPages != null)
+				pdf.allPages = saveAllPages;
+			else
+				pdf.allPages = false;
+			kendoGrid.options.pdf = pdf;
+
+			kendoGrid.saveAsPDF();
+		}
 	},
 	tabstrip: {
 		displayLoading: function (tabstrip) {
