@@ -1,0 +1,6 @@
+*.nupkg
+CreateNuget-Pack.cmd
+CreateNuget-Push.cmd
+kendoHelpers.csproj
+kendoHelpers.csproj.user
+Salar.kendoHelpers.nuspec

@@ -244,7 +244,8 @@
 
 				kendoGrid.refresh();
 
-				// the timeout is to let the process continue other kendo events
+				// the timeout is to let the process do other kendo events
+				// this is essential to be able to edit the cell after refresh
 				setTimeout(function () {
 
 					// should focus on the current instead of the item being edited
