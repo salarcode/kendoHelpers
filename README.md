@@ -118,6 +118,10 @@ Available at `kendoHelpers.grid.*`
 
    Saves the grid data as a Pdf document.
 
+* **`forceResize (kendoGrid)`**
+
+   Force resizing the grid. This is effective if the grids' height is 100%.
+
 ####TabStrip
 Available at `kendoHelpers.tabstrip.*`
 
