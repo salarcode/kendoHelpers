@@ -430,6 +430,20 @@
 			kendoGrid.options.pdf = pdf;
 
 			kendoGrid.saveAsPDF();
+		},
+		forceResize: function (kendoGrid) {
+			///<summary>Force resizing the grid. This is effective if the grids' height is 100%.</summary>
+			try {
+				if (kendoGrid._resize) {
+					kendoGrid.element.find('.k-grid-content').css('height', '10px');
+					kendoGrid._resize(kendoGrid.getSize(), true);
+				} else {
+					kendoGrid.resize();
+					console.warn("kendoGrid internal function '_resize' was not found");
+				}
+			} catch (e) {
+				console.warn("forceResize is failed, ", kendoGrid, e);
+			}
 		}
 	},
 	tabstrip: {
@@ -467,7 +481,7 @@
 			} catch (e) {
 				console.warn("tabStripShowHide is failed, tabIndex=" + tabIndex, tabstrip, e);
 			}
-		}		
+		}
 	},
 	listview: {
 		selectRowByUid: function (kendoList, rowUid) {
