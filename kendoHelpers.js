@@ -296,7 +296,7 @@
 			try {
 				if (!colIndex)
 					colIndex = 0;
-				if (!rowNumber)
+				if (rowNumber !== 0 && !rowNumber)
 					rowNumber = 1;
 
 				var row = kendoGrid.element.find("tr:eq(" + rowNumber + ")");
