@@ -27,6 +27,13 @@ if (dataItem != null){
 ###Helpers list:
 Here is the list of all available helpers.
 
+####General
+Available at `kendoHelpers.*`
+
+* **`enableControls (container, enable)`**
+
+    Enables/Disables all the kendo controls in the container.
+
 ####Grid
 Available at `kendoHelpers.grid.*`
 

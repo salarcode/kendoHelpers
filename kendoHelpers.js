@@ -708,5 +708,19 @@
 		}
 		return null;
 	},
-
+	enableControls: function (container, enable) {
+		///<summary>Enables/Disables all the kendo controls in the container.</summary>
+		try {
+			$(container).find('[data-' + kendo.ns + 'role]').addBack().each(function () {
+				var data = $(this).data();
+				for (var key in data) {
+					if (key.indexOf('kendo') === 0 && typeof data[key].enable === "function") {
+						data[key].enable(enable);
+					}
+				}
+			});
+		} catch (e) {
+			console.warn("enableControls is failed to set enable=" + enable + " in " + container, e);
+		}
+	},
 };
