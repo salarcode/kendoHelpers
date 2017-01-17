@@ -117,11 +117,11 @@ Available at `kendoHelpers.grid.*`
 
     Double click event on cells for grid.
 
-* ** :star2: `saveGridAsExcel (kendoGrid, fileName, saveAllPages)`**
+* :star2: **`saveGridAsExcel (kendoGrid, fileName, saveAllPages)`**
 
     Saves the grid data as an Excel file.
 
-* ** :star2: `saveGridAsPdf (kendoGrid, fileName, saveAllPages, options, authorName)`**
+* :star2: **`saveGridAsPdf (kendoGrid, fileName, saveAllPages, options, authorName)`**
 
    Saves the grid data as a Pdf document.
 
