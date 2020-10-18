@@ -2,7 +2,7 @@
 Pack of helper methods to make your life easier when working with Kendo UI® framework.
 
 
-##NuGet Package 
+## NuGet Package 
 ```
 PM> Install-Package Salar.kendoHelpers
 ```
@@ -10,7 +10,7 @@ This package will install kendoHelpers.js in `/scripts/kendoHelpers.js`
 
 It is easy to use, just add the kendoHelper.js to your project/page and voila, you can now use it.
 
-###How to use it:
+### How to use it:
 ```js
 // Get the grid
 var grid = $('#SampleGrid').data('kendoGrid');
@@ -24,17 +24,17 @@ if (dataItem != null){
 }
 ```
 
-###Helpers list:
+### Helpers list:
 Here is the list of all available helpers.
 
-####General
+#### General
 Available at `kendoHelpers.*`
 
 * **`enableControls (container, enable)`**
 
     Enables/Disables all the kendo controls in the container.
 
-####Grid
+#### Grid
 Available at `kendoHelpers.grid.*`
 
 * **`addRow (kendoGrid, editRow)`**
@@ -129,7 +129,7 @@ Available at `kendoHelpers.grid.*`
 
    Force resizing the grid. This is effective if the grids' height is 100%.
 
-####TabStrip
+#### TabStrip
 Available at `kendoHelpers.tabstrip.*`
 
 * **`displayLoading (tabstrip)`**
@@ -140,14 +140,14 @@ Available at `kendoHelpers.tabstrip.*`
 
     Show/hide the specified tab.
 
-####ListView
+#### ListView
 Available at `kendoHelpers.listview.*`
 
 * **`selectRowByUid (kendoList, rowUid)`**
 
     Selects the specified row by Uid.
 
-####TreeList
+#### TreeList
 Available at `kendoHelpers.treelist.*`
 
 * **`actionForSubItems (treeList, dataItem, action, onlyFirstLevel)`**
@@ -160,7 +160,7 @@ Available at `kendoHelpers.treelist.*`
 
     The result is Kendo column definition if found, otherwise null.
 
-####TreeView
+#### TreeView
 Available at `kendoHelpers.treeview.*`
 
 * **`applyRightClickSelection (treeview, onRightClick)`**
@@ -181,7 +181,7 @@ Available at `kendoHelpers.treeview.*`
 
     Reloads the selected node's parent in order to refresh the node itself.
 
-####Upload
+#### Upload
 Available at `kendoHelpers.upload.*`
 
 * **`hasAnyFileSelected (kendoUpload)`**
@@ -196,7 +196,7 @@ Available at `kendoHelpers.upload.*`
 
     The result is Array of elements if found, otherwise null.
 
-####Validator
+#### Validator
 Available at `kendoHelpers.validator.*`
 
 * **`isValid (form)`**
@@ -211,7 +211,7 @@ Available at `kendoHelpers.validator.*`
 
     The result is boolean.
 
-####DataSource
+#### DataSource
 Available at `kendoHelpers.datasource.*`
 
 * **`findDataItemByUid (data, uid)`**
